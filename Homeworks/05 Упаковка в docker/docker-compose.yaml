@@ -1,0 +1,17 @@
+services:
+  promocode-factory-api:
+    container_name: promocode-factory-api
+    build:
+      context: .
+      dockerfile: src/Dockerfile
+    ports:
+      - "8091:8080" # Мапим внешний 8091 на внутренний 8080 (стандарт для aspnet 8+)
+    volumes:
+      - db-data:/app/db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      # Переопределяем строку подключения для работы внутри контейнера
+      - ConnectionStrings__PromocodeFactoryDb=Data Source=/app/db/PromoCodeFactoryDb.sqlite
+
+volumes:
+  db-data:
