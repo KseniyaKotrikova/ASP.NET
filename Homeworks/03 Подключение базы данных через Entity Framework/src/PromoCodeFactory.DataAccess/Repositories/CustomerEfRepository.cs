@@ -11,4 +11,5 @@ internal class CustomerEfRepository(PromoCodeFactoryDbContext context) : EfRepos
             .Include(c => c.Preferences)
             .Include(c => c.CustomerPromoCodes);
     }
+
 }

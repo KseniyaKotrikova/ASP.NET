@@ -9,22 +9,6 @@ namespace PromoCodeFactory.DataAccess;
 
 public static class DependencyInjection
 {
-    public static void AddInMemoryDataAccess(this IServiceCollection services)
-    {
-        services.AddSingleton<IRepository<Employee>>(_ =>
-            new InMemoryRepository<Employee>(SeedData.Employees));
-        services.AddSingleton<IRepository<Preference>>(_ =>
-            new InMemoryRepository<Preference>(SeedData.Preferences));
-        services.AddSingleton<IRepository<Role>>(_ =>
-            new InMemoryRepository<Role>(SeedData.Roles));
-        services.AddSingleton<IRepository<Customer>>(_ =>
-            new InMemoryRepository<Customer>(SeedData.Customers));
-        services.AddSingleton<IRepository<PromoCode>>(_ =>
-            new InMemoryRepository<PromoCode>(SeedData.PromoCodes));
-        services.AddSingleton<IRepository<CustomerPromoCode>>(_ =>
-            new InMemoryRepository<CustomerPromoCode>(SeedData.CustomerPromoCodes));
-    }
-
     public static void AddEfDataAccess(this IServiceCollection services)
     {
         services.AddDbContext<PromoCodeFactoryDbContext>(builder =>
