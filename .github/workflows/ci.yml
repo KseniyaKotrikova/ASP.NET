@@ -37,11 +37,14 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          # Указываем контекст. Если Dockerfile в корне: .
           context: .
+          # Робот должен зайти в папку Homeworks, потом в 06..., потом в src
+          file: ./Homeworks/06 Настройка CI/src/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
