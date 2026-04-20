@@ -6,8 +6,15 @@ COPY . .
 RUN dotnet restore
 RUN dotnet build -c $BUILD_CONFIGURATION --no-restore
 
-FROM build AS publish
+# --- НОВЫЙ ЭТАП ТЕСТИРОВАНИЯ ---
+FROM build AS test
+
+WORKDIR "/src/PromoCodeFactory.UnitTests"
+RUN dotnet test --no-build -c $BUILD_CONFIGURATION
+
+FROM test AS publish
 ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
 RUN dotnet publish ./PromoCodeFactory.WebHost/PromoCodeFactory.WebHost.csproj \
     -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false --no-build
 
