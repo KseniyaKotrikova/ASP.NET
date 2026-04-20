@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PromoCodeFactory.Core.Domain.PromoCodeManagement;
 
 namespace PromoCodeFactory.WebHost.Controllers;
 
