@@ -1,0 +1,8 @@
+services:
+  promo-api:
+    # Добавляем путь к образу в GitHub Packages
+    image: ghcr.io/kseniyakotrikova/asp.net:latest
+    ports:
+      - "8080:8080"
+    restart: always
+    
